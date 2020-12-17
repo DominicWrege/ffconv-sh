@@ -7,35 +7,34 @@
 
 	function script_usage() {
 		cat << EOF
-	videoconv (17.12.2020)
+videoconv (17.12.2020)
 
-	Converts video files from the current directory with ffmpeg into different containers and extracts only the English audio and subtitles.
-	The default container format is mkv.
-	All converted files are saved to the "./converted\$outformat" folder.
-	Usage:
-		videoconv.sh [INFORMAT] [OUTFORMAT]	Converts files from current dir
-		videoconv.sh -h | --help		Displays this help
+Converts video files from the current directory with ffmpeg into different containers and extracts only the English audio and subtitles.
+The default container format is mkv.
+All converted files are saved to the "./converted\$outformat" folder.
+Usage:
+	videoconv.sh [INFORMAT] [OUTFORMAT]	Converts files from current dir
+	videoconv.sh -h | --help		Displays this help
 
-	Options:
-		-h, --help	Show this screen.
+Options:
+	-h, --help	Show this screen.
 
-	Arguments:
-		INFORMAT	Input file format [default: mkv]
-		OUTFORMAT	Output file format [default: mkv]
+Arguments:
+	INFORMAT	Input file format [default: mkv]
+	OUTFORMAT	Output file format [default: mkv]
 
-	Examples:
-		videoconv.sh avi
-		videoconv.sh avi mp4
+Examples:
+	videoconv.sh avi
+	videoconv.sh avi mp4
 
-	EOF
-	}
-
+EOF
+}
 
 	# default extensions
 	in_extension="mkv"
 	out_extension="mkv"
 
-	function parse_params() {
+	function parse_params () {
 			local param
 		param="$1"
 		
@@ -53,9 +52,7 @@
 		fi
 	}
 
-
-
-	function check_cmd_exits {
+	function check_cmd_exits() {
 		local cmd
 		cmds=(jq ffmpeg ffprobe)
 		for c in ${cmds[@]}; do
@@ -67,17 +64,24 @@
 
 	}
 
-	function main {
+	function main() {
 		parse_params "$@"	
 		check_cmd_exits
+		files_exist
 		convert
 	}
 
+	function files_exist() {
+		if [ -n "$(find . -maxdepth 1 -name '*.$in_extension' -type f -print -quit)" ]; then
+    		echo "files not found: *.$in_extension"
+			exit 1
+		fi
+	}
 
-	function join_by { local IFS="$1"; shift; echo "$*"; }
+	function join_by() { local IFS="$1"; shift; echo "$*"; }
 
 
-	function convert {
+	function convert() {
 		# create ourdir
 		out_dir="./converted$out_extension"
 		mkdir -p $out_dir
