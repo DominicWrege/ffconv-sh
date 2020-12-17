@@ -7,8 +7,8 @@ Usage:
 ```
 $ videoconv.sh --help | -h
 Usage:
-	videoconv.sh [INFORMAT] [OUTFORMAT]		Converts files from currentdirectory
-	videoconv.sh -h | --help				Displays this help
+	videoconv.sh [INFORMAT] [OUTFORMAT]     Converts files from current dir
+	videoconv.sh -h | --help		        Displays this help
 
 Options:
 	-h, --help	Show this screen.
@@ -20,10 +20,6 @@ Arguments:
 Examples:
 	videoconv.sh avi
 	videoconv.sh avi mp4
-or
-$ videoconv.sh
-or
-$ videoconv.sh avi mkv
 ```
 
 Do not forget to make the file executable.
