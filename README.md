@@ -8,7 +8,11 @@ Usage:
 $ videoconv.sh --help | -h
 Usage:
 	videoconv.sh [INFORMAT] [OUTFORMAT]     Converts files from current dir
+<<<<<<< HEAD
 	videoconv.sh -h | --help            Displays this help
+=======
+	videoconv.sh -h | --help		Displays this help
+>>>>>>> 3a90bb2a1614cfed9abcefa3567163ffe993759b
 
 Options:
 	-h, --help	Show this screen.
