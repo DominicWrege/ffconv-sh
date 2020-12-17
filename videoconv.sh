@@ -13,8 +13,8 @@ Converts video files from the current directory with ffmpeg into different conta
 The default container format is mkv.
 All converted files are saved to the "./converted\$outformat" folder.
 Usage:
-	videoconv.sh [INFORMAT] [OUTFORMAT]		Converts files from current dir
-	videoconv.sh -h | --help			Displays this help
+	videoconv.sh [INFORMAT] [OUTFORMAT]	Converts files from current dir
+	videoconv.sh -h | --help		Displays this help
 
 Options:
 	-h, --help	Show this screen.
