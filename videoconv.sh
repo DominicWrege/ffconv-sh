@@ -1,8 +1,8 @@
-	#!/bin/bash
-	set -e
-	set -o errexit          # Exit on most errors (see the manual)
-	set -o errtrace         # Make sure any error trap is inherited
-	set -o pipefail         # Use last non-zero exit code in a pipeline
+#!/bin/bash
+set -e
+set -o errexit          # Exit on most errors (see the manual)
+set -o errtrace         # Make sure any error trap is inherited
+set -o pipefail         # Use last non-zero exit code in a pipeline
 
 
 # default extensions
