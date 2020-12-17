@@ -9,7 +9,7 @@ function script_usage() {
     cat << EOF
 videoconv (17.12.2020)
 Usage:
-	videoconv INFORMAT [OUTFORMAT] [AUDIOTRACK] [SUBTRACK]
+	videoconv [INFORMAT] [OUTFORMAT] 
 	OUTFORMAT: mkv, mp4, avi..	DEFAULT: mkv
 	INFORMAT: mkv, mp4, avi..	DEFAULT: mkv
 EOF
