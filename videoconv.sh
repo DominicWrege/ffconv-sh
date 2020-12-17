@@ -26,7 +26,6 @@ Arguments:
 Examples:
 	videoconv.sh avi
 	videoconv.sh avi mp4
-
 EOF
 }
 
@@ -72,9 +71,11 @@ EOF
 	}
 
 	function files_exist() {
-		if [ -n "$(find . -maxdepth 1 -name '*.$in_extension' -type f -print -quit)" ]; then
-    		echo "files not found: *.$in_extension"
-			exit 1
+		mkv=$(find . -type f -name "*.$in_extension" -print -quit )
+		if [[ -z $mkv ]];
+		then
+			echo "files not found: *.$in_extension"
+					exit 1
 		fi
 	}
 
