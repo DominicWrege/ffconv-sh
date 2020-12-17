@@ -1,6 +1,8 @@
 Converts with ffmpeg video files into different containers and extracts only the English audio and subtitles. The default container format is mkv.  
 It requires jq and ffmpeg to be installed.
 
+ALl converted files are saved in the `./converted\$extension` folder.
+
 Usage:
 
 ```

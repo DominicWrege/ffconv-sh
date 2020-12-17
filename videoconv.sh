@@ -8,6 +8,10 @@ set -o pipefail         # Use last non-zero exit code in a pipeline
 function script_usage() {
     cat << EOF
 videoconv (17.12.2020)
+
+Converts with ffmpeg video files into different containers and extracts only the English audio and subtitles.
+The default container format is mkv.
+All converted files are saved in the "./converted\$extension" folder.
 Usage:
 	videoconv [INFORMAT] [OUTFORMAT] 
 	OUTFORMAT: mkv, mp4, avi..	DEFAULT: mkv
@@ -64,9 +68,8 @@ function join_by { local IFS="$1"; shift; echo "$*"; }
 
 function convert {
 	# create ourdir
-	out_dir="converted$out_extension"
+	out_dir="./converted$out_extension"
 	mkdir -p $out_dir
-	out_dir=
 	IFS=$'\n'
 	for item in *."$in_extension"; do
 		item=${item#./}
