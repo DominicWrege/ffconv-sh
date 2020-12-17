@@ -70,7 +70,7 @@ EOF
 		convert
 	}
 	function files_exist() {
-		files=$(find . -type f -name "*.$in_extension" -maxdepth 1 -print -quit)
+		files=$(find . -maxdepth 1 -type f -name "*.$in_extension" -print -quit)
 		if [[ -z $files ]];
 		then
 			echo "files not found: *.$in_extension"
