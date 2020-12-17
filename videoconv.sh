@@ -17,7 +17,7 @@ Usage:
 	videoconv.sh -h | --help		Displays this help
 
 Options:
-	-h, --help	Show this screen.
+	-h, --help	Show this screen
 
 Arguments:
 	INFORMAT	Input file format [default: mkv]
@@ -75,7 +75,7 @@ EOF
 		if [[ -z $mkv ]];
 		then
 			echo "files not found: *.$in_extension"
-					exit 1
+			exit 1
 		fi
 	}
 
