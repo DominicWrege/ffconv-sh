@@ -11,7 +11,7 @@ videoconv (17.12.2020)
 
 Converts video files from the current directory with ffmpeg into different containers and extracts only the English audio and subtitles.
 The default container format is mkv.
-All converted files are saved in the "./converted\$outformat" folder.
+All converted files are saved to the "./converted\$outformat" folder.
 Usage:
 	videoconv.sh [INFORMAT] [OUTFORMAT]		Converts files from current dir
 	videoconv.sh -h | --help				Displays this help
