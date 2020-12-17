@@ -64,8 +64,9 @@ function join_by { local IFS="$1"; shift; echo "$*"; }
 
 function convert {
 	# create ourdir
-	mkdir -p converted$outextension
-
+	out_dir="converted$out_extension"
+	mkdir -p $out_dir
+	out_dir=
 	IFS=$'\n'
 	for item in *."$in_extension"; do
 		item=${item#./}
@@ -82,7 +83,7 @@ function convert {
 		lang_opt=$(join_by " " "${maps[@]}")	
 		### extract eng lang ids
 
-		eval ffmpeg -i "$item" $lang_opt -vcodec copy -acodec copy converted$out_extension/"${item%.*}.$out_extension"
+		eval ffmpeg -i "$item" $lang_opt -vcodec copy -acodec copy $out_dir/"${item%.*}.$out_extension"
 	done
 }
 
