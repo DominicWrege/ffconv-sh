@@ -69,10 +69,9 @@ EOF
 		files_exist
 		convert
 	}
-
 	function files_exist() {
-		mkv=$(find . -type f -name "*.$in_extension" -print -quit )
-		if [[ -z $mkv ]];
+		files=$(find . -type f -name "*.$in_extension" -maxdepth 1 -print -quit)
+		if [[ -z $files ]];
 		then
 			echo "files not found: *.$in_extension"
 			exit 1
