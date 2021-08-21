@@ -103,7 +103,7 @@ function convert() {
 		echo found this indexes: $langs
 		lang_opt=$(join_by " " "${maps[@]}")
 		### extract eng lang ids
-		eval ffmpeg -nostdin -i "\"$item\"" "$lang_opt" -vcodec copy -acodec copy -stats "\"$out_dir/${item%.*}.$out_extension\""
+		eval ffmpeg -nostdin -i "\"$item\"" "$lang_opt" -vcodec copy -acodec copy -stats -v info "\"$out_dir/${item%.*}.$out_extension\""
 		
 	done
 }
