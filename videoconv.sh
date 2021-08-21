@@ -101,8 +101,8 @@ function convert() {
 			maps+=("-map 0:$lang_i")
 		done
 		
-		echo converting: "$item"
-                echo found this indexes: $langs
+                echo converting: "\"$item\""
+                echo found this indexes: "$langs"
 		lang_opt=$(join_by " " "${maps[@]}")
 		### extract eng lang ids
 		eval ffmpeg -nostdin -i "\"$item\"" "$lang_opt" -vcodec copy -acodec copy -stats -v fatal "\"$out_dir/${item%.*}.$out_extension\""
