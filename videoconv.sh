@@ -104,7 +104,7 @@ function convert() {
         	echo converting: "\"$item\""
                 echo found these 'en' indexes: $(join_by " " "${langs[@]}")
                 lang_opt=$(join_by " " "${maps[@]}")
-		### extract eng lang ids
+		### works only with eval :/
 		eval ffmpeg -nostdin -i "\"$item\"" "$lang_opt" -vcodec copy -acodec copy -stats -v fatal "\"$out_dir/${item%.*}.$out_extension\""
 		
 	done
