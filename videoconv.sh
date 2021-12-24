@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 set -e
-set -o errexit  # Exit on most errors (see the manual)
-set -o errtrace # Make sure any error trap is inherited
-set -o pipefail # Use last non-zero exit code in a pipeline
+set -o errexit          # Exit on most errors (see the manual)
+set -o errtrace         # Make sure any error trap is inherited
+set -o pipefail         # Use last non-zero exit code in a pipeline
+
 
 # default extensions
 in_extension="mkv"
 out_extension="mkv"
 
 function script_usage() {
-	cat <<EOF
+	cat << EOF
 videoconv (17.12.2020)
 
 Converts video files from the current directory with ffmpeg into different containers and extracts only the English audio and subtitles.
@@ -33,21 +34,21 @@ Examples:
 EOF
 }
 
-function parse_params() {
+function parse_params () {
 	local param
 	param="$1"
-
+	
 	if [ "${param[0]}" = "-h" ] || [ "${param[0]}" = "--help" ]; then
 		script_usage
 		exit 0
 	fi
 
 	if [ -n "${param[0]}" ]; then
-		in_extension=$1
+			in_extension=$1
 	fi
 
 	if [ -n "${param[1]}" ]; then
-		out_extension=$2
+			out_extension=$2
 	fi
 }
 
@@ -55,33 +56,31 @@ function check_cmd_exits() {
 	local cmd
 	cmds=(jq ffmpeg ffprobe)
 	for c in ${cmds[@]}; do
-		if ! type $c >/dev/null; then
-			echo "COMMAND $c could not be found in PATH or is not installed"
-			exit 1
+		if ! type $c > /dev/null; then
+				echo "COMMAND $c could not be found in PATH or is not installed"
+				exit 1
 		fi
 	done
 
 }
 
 function main() {
-	parse_params "$@"
+	parse_params "$@"	
 	check_cmd_exits
 	files_exist
 	convert
 }
 function files_exist() {
 	files=$(find . -maxdepth 1 -type f -name "*.$in_extension" -print -quit)
-	if [[ -z $files ]]; then
+	if [[ -z $files ]];
+	then
 		echo "files not found: *.$in_extension"
 		exit 1
 	fi
 }
 
-function join_by() {
-	local IFS="$1"
-	shift
-	echo "$*"
-}
+function join_by() { local IFS="$1"; shift; echo "$*"; }
+
 
 function convert() {
 	# create ourdir
@@ -92,23 +91,26 @@ function convert() {
 	for item in *."$in_extension"; do
 		item=${item#./}
 		maps=("-map 0:0")
-		echo convert: $item
 
 		### extract eng lang ids
 		langs=$(ffprobe -show_entries stream=index:stream_tags=language -print_format json -v quiet -i "$item" | jq -c '.streams[] | select(.tags.language == "eng" and .index != 0) | .index')
+		echo converting: "\"$item\""
 
-		for lang_i in $langs; do
-			maps+=("-map 0:$lang_i")
-		done
-		
-        	echo converting: "\"$item\""
-                echo found these 'en' indexes: $(join_by " " "${langs[@]}")
-                lang_opt=$(join_by " " "${maps[@]}")
-		### works only with eval :/
+		if [ ${#langs[@]} -gt 0 ]; then
+			echo found these 'en' indexes: $(join_by " " "${langs[@]}")
+			for lang_i in $langs; do
+				maps+=("-map 0:$lang_i")
+			done
+		else
+			echo none 'en' lang id found, using id 1
+			maps+=("-map 0:1")
+		fi
+
+		lang_opt=$(join_by " " "${maps[@]}")
 		eval ffmpeg -nostdin -i "\"$item\"" "$lang_opt" -vcodec copy -acodec copy -stats -v fatal "\"$out_dir/${item%.*}.$out_extension\""
-		
 	done
 }
+
 
 main "$@"
 exit 0
