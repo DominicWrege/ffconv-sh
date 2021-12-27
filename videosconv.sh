@@ -35,20 +35,18 @@ EOF
 }
 
 function parse_params () {
-	local param
-	param="$1"
 	
-	if [ "${param[0]}" = "-h" ] || [ "${param[0]}" = "--help" ]; then
+	if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		script_usage
 		exit 0
 	fi
 
-	if [ -n "${param[0]}" ]; then
-			in_extension=$1
+	if [ -n "$1" ]; then
+		in_extension=$1
 	fi
 
-	if [ -n "${param[1]}" ]; then
-			out_extension=$2
+	if [ -n "$2" ]; then
+		out_extension=$2
 	fi
 }
 
@@ -57,8 +55,8 @@ function check_cmd_exits() {
 	cmds=(jq ffmpeg ffprobe)
 	for c in ${cmds[@]}; do
 		if ! type $c > /dev/null; then
-				echo "COMMAND $c could not be found in PATH or is not installed"
-				exit 1
+			echo "COMMAND $c could not be found in PATH or is not installed"
+			exit 1
 		fi
 	done
 

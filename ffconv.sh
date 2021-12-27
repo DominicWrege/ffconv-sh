@@ -32,19 +32,20 @@ EOF
 }
 
 function parse_params () {
-    local param
-    param="$1"
     
-    if [ "${param[0]}" = "-h" ] || [ "${param[0]}" = "--help" ]; then
+    if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
         script_usage
         exit 0
     fi
     
-    if [ -n "${param[0]}" ]; then
-        input_file=$1
-    fi
+    if [ -z "$1" ]; then
+		echo "Please provide a input file"
+		exit 1
+	else
+		input_file=$1
+	fi
     
-    if [ -n "${param[1]}" ]; then
+    if [ -n "$2" ]; then
         out_extension=$2
     fi
 }
@@ -70,7 +71,7 @@ function main() {
 
 function files_exist() {
     if [ ! -f "$input_file" ]; then
-        echo "file was not found: *$input_file"
+        echo "file was not found: $input_file"
         exit 1
     fi
 }
