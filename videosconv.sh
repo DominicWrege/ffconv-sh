@@ -34,7 +34,7 @@ Examples:
 EOF
 }
 
-function parse_params () {
+function parse_params() {
 	
 	if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		script_usage
