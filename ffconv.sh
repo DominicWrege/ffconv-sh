@@ -16,14 +16,14 @@ Converts a single video using FFmpeg into a different container and extracts onl
 The default container format is mkv.
 
 Usage:
-	ffconv.sh [INFORMAT] [OUTFORMAT]	Converts files from current dir
+	ffconv.sh [INPUTFILE] [OUTFORMAT]   Converts a single file
 	ffconv.sh -h | --help               Displays this help
 
 Options:
 	-h, --help	Show this screen
 
 Arguments:
-    INPUT_FILE	Input file
+	INPUT_FILE	Input file
 	OUTFORMAT	Output file format [default: mkv]
 
 Examples:
