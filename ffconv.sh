@@ -10,7 +10,7 @@ out_extension="mkv"
 
 function script_usage() {
 	cat << EOF
-ffconv (17.12.2020)
+ffconv (26.12.2021)
 
 Converts a single video using FFmpeg into a different container and extracts only the English audio and subtitles.
 The default container format is mkv.

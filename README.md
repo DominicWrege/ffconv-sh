@@ -28,11 +28,7 @@ Examples:
 If you wanne just convert a single file.
 Output is `convert-$filename`
 ```
-dominic@wallstreet /tmp> ffconv.sh --help
-ffconv (17.12.2020)
-
-Converts a single video using FFmpeg into a different container and extracts only the English audio and subtitles.
-The default container format is mkv.
+$ ffconv.sh --help
 
 Usage:
 	ffconv.sh [INPUTFILE] [OUTFORMAT]   Converts a single file
