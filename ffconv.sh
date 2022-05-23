@@ -32,7 +32,6 @@ EOF
 }
 
 function parse_params() {
-    
     if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
         script_usage
         exit 0
@@ -78,7 +77,6 @@ function files_exist() {
 
 function join_by() { local IFS="$1"; shift; echo "$*"; }
 
-
 function convert() {
     # create ourdir
     local output_file
@@ -101,7 +99,6 @@ function convert() {
     lang_opt=$(join_by " " "${maps[@]}")
     eval ffmpeg -nostdin -i "\"$input_file\"" "$lang_opt" -vcodec copy -acodec copy -stats -v fatal "\"$output_file\""
 }
-
 
 main "$@"
 exit 0
