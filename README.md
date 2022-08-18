@@ -1,4 +1,4 @@
-# ffconv
+# videosconv
 Converts wihout encoding the video files from the current directory with ffmpeg into different containers and extracts only the English audio and subtitles. The default container format is mkv.  
 It requires jq and ffmpeg to be installed.
 All converted files are saved to the `./converted$outformat` folder.
